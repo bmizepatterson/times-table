@@ -33,7 +33,7 @@ new Vue({
             return arr;
         },
         readyForDisplay: function() {
-            return (this.rows && this.cols && !this.outsideBounds);
+            return (this.rows > 0 && this.cols > 0 && !this.outsideBounds);
         },
         outsideBounds: function() {
             return (this.rows > max || this.cols > max);

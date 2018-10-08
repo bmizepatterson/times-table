@@ -15,7 +15,7 @@
         <div class="row settings">
             <div class="col-5">
                 <label for="rows" class="sr-only">Rows</label>
-                <input v-model="rows" id="rows" class="form-control" placeholder="Rows" type="text" size="10">
+                <input v-model="rows" id="rows" class="form-control" placeholder="Rows" type="number" size="10" min="1">
             </div>
 
             <div class="col-2">
@@ -24,7 +24,7 @@
 
             <div class="col-5">
                 <label for="cols" class="sr-only">Columns</label>
-                <input v-model="cols" id="cols" class="form-control" placeholder="Columns" type="text" size="10">
+                <input v-model="cols" id="cols" class="form-control" placeholder="Columns" type="number" size="10" min="1">
             </div>
         </div>
 
