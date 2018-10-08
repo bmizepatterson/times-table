@@ -15,7 +15,7 @@
         <div class="row settings">
             <div class="col-5">
                 <label for="rows" class="sr-only">Rows</label>
-                <input v-model="rows" v-on:change="showTable" id="rows" class="form-control" placeholder="Rows" type="text" size="10">
+                <input v-model="rows" id="rows" class="form-control" placeholder="Rows" type="text" size="10">
             </div>
 
             <div class="col-2">
@@ -24,20 +24,29 @@
 
             <div class="col-5">
                 <label for="cols" class="sr-only">Columns</label>
-                <input v-model="cols" v-on:change="showTable" id="cols" class="form-control" placeholder="Columns" type="text" size="10">
+                <input v-model="cols" id="cols" class="form-control" placeholder="Columns" type="text" size="10">
             </div>
         </div>
 
-        <table v-if="rows && cols" class="table table-bordered">
+        <table v-if="readyForDisplay" class="table table-bordered">
             <tr>
-                <th>&nbsp;</th>
-                <th v-for="rowHeader of rowHeaders">{{ rowHeader }}</th>
+                <th v-for="(header, index) of headers"
+                    v-bind:class="{ highlighted: highlight === index}"
+                    v-on:mouseover="highlight = index"
+                    v-on:mouseout="highlight = null">{{ header }}</th>
             </tr>
-            <tr v-for="row of factors">
-                <th>{{ row[0] }}</th>
-                <td v-for="(cell, index) of row" v-if="index > 0">{{ cell }}</td>
+            <tr v-for="(row, rowIndex) of multiples">
+                <th v-bind:class="{ highlighted: highlight === 0 }"
+                    v-on:mouseover="highlight = 0"
+                    v-on:mouseout="highlight = null">{{ row[0] }}</th>
+                <td v-for="(cell, colIndex) of row"
+                    v-if="colIndex > 0"
+                    v-bind:class="{ highlighted: highlight === colIndex }"
+                    v-on:mouseover="highlight = colIndex"
+                    v-on:mouseout="highlight = null">{{ cell }}</td>
             </tr>
         </table>
+        <p v-else-if="outsideBounds" class="mt-5 alert alert-warning">Please limit yourself to {{ max }} rows/columns. Don't get crazy.</p>
         <p v-else class="mt-5">Enter the number of rows and columns to generate a times table.</p>
     </div>
 

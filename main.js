@@ -5,17 +5,19 @@ new Vue({
     data: {
         rows: '',
         cols: '',
+        max:  12,
+        highlight: null
     },
 
     computed: {
-        rowHeaders: function() {
-            let arr = [];
+        headers: function() {
+            let arr = [''];
             for (let i = 1; i <= this.cols; i++) {
                 arr.push(i);
             }
             return arr;
         },
-        factors: function() {
+        multiples: function() {
             let arr = [];
             for (let i = 1; i <= this.rows; i++) {
                 let row = [i]
@@ -25,15 +27,18 @@ new Vue({
                 arr.push(row);
             }
             return arr;
+        },
+        readyForDisplay: function() {
+            return (this.rows && this.cols && !this.outsideBounds);
+        },
+        outsideBounds: function() {
+            return (this.rows > this.max || this.cols > this.max);
         }
-
     },
 
     methods: {
-        showTable: function() {
-            if (!this.rows || !this.cols) return;
-            console.log(this.rows, 'x', this.cols);
-
+        isHighlighted: function(col) {
+            return (this.highlight === col);
         }
     }
 });
