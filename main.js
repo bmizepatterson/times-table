@@ -1,3 +1,5 @@
+let max = 12;
+
 new Vue({
 
     el: "#app",
@@ -5,13 +7,14 @@ new Vue({
     data: {
         rows: '',
         cols: '',
-        max:  12,
         highlight: null
     },
 
     computed: {
         headers: function() {
+            // First element is the empty top-corner table cell
             let arr = [''];
+            // We start at 1.
             for (let i = 1; i <= this.cols; i++) {
                 arr.push(i);
             }
@@ -20,7 +23,8 @@ new Vue({
         multiples: function() {
             let arr = [];
             for (let i = 1; i <= this.rows; i++) {
-                let row = [i]
+                // First element the far left table column.
+                let row = [i];
                 for (let j = 1; j <= this.cols; j++) {
                     row.push(i * j);
                 }
@@ -32,7 +36,7 @@ new Vue({
             return (this.rows && this.cols && !this.outsideBounds);
         },
         outsideBounds: function() {
-            return (this.rows > this.max || this.cols > this.max);
+            return (this.rows > max || this.cols > max);
         }
     },
 
