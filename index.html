@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>Times Table</title>
+</head>
+<body class="container">
+    <div id="app">
+
+        <h1 class="mb-3">Times Table</h1>
+
+        <div class="row settings">
+            <div class="col-5">
+                <label for="rows" class="sr-only">Rows</label>
+                <input v-model="rows" v-on:change="showTable" id="rows" class="form-control" placeholder="Rows" type="text" size="10">
+            </div>
+
+            <div class="col-2">
+                <p class="times text-center">&nbsp;&times;&nbsp;</p>
+            </div>
+
+            <div class="col-5">
+                <label for="cols" class="sr-only">Columns</label>
+                <input v-model="cols" v-on:change="showTable" id="cols" class="form-control" placeholder="Columns" type="text" size="10">
+            </div>
+        </div>
+
+        <table v-if="rows && cols" class="table table-bordered">
+            <tr>
+                <th>&nbsp;</th>
+                <th v-for="rowHeader of rowHeaders">{{ rowHeader }}</th>
+            </tr>
+            <tr v-for="row of factors">
+                <th>{{ row[0] }}</th>
+                <td v-for="(cell, index) of row" v-if="index > 0">{{ cell }}</td>
+            </tr>
+        </table>
+        <p v-else class="mt-5">Enter the number of rows and columns to generate a times table.</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

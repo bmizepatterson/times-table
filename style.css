@@ -1,0 +1,19 @@
+#app {
+    padding-top: 2rem;
+}
+.settings {
+    max-width: 500px;
+}
+.settings .row {
+    margin: 0;
+}
+.settings .col {
+    padding: 0;
+}
+.settings .times {
+    font-size: 2rem;
+    line-height: 1;
+}
+table {
+    text-align: center;
+}
