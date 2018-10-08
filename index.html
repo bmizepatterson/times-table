@@ -28,21 +28,24 @@
             </div>
         </div>
 
-        <table v-if="readyForDisplay" class="table table-bordered">
+        <table v-if="readyForDisplay" class="table table-bordered mt-5">
             <tr>
                 <th v-for="(header, index) of headers"
                     v-bind:class="{ highlighted: highlight === index}"
                     v-on:mouseover="highlight = index"
+                    v-on:click="highlight = index"
                     v-on:mouseout="highlight = null">{{ header }}</th>
             </tr>
             <tr v-for="(row, rowIndex) of multiples">
                 <th v-bind:class="{ highlighted: highlight === 0 }"
                     v-on:mouseover="highlight = 0"
+                    v-on:click="highlight = 0"
                     v-on:mouseout="highlight = null">{{ row[0] }}</th>
                 <td v-for="(cell, colIndex) of row"
                     v-if="colIndex > 0"
                     v-bind:class="{ highlighted: highlight === colIndex }"
                     v-on:mouseover="highlight = colIndex"
+                    v-on:click="highlight = colIndex"
                     v-on:mouseout="highlight = null">{{ cell }}</td>
             </tr>
         </table>
