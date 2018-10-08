@@ -15,16 +15,16 @@
         <div class="row settings">
             <div class="col-5">
                 <label for="rows" class="sr-only">Rows</label>
-                <input v-model="rows" id="rows" class="form-control" placeholder="Rows" type="number" size="10" min="1">
+                <input v-model="rows" v-bind:max="max" id="rows" class="form-control" placeholder="Rows" type="number" size="10" min="1">
             </div>
 
             <div class="col-2">
-                <p class="times text-center">&nbsp;&times;&nbsp;</p>
+                <p class="times text-center">&times;</p>
             </div>
 
             <div class="col-5">
                 <label for="cols" class="sr-only">Columns</label>
-                <input v-model="cols" id="cols" class="form-control" placeholder="Columns" type="number" size="10" min="1">
+                <input v-model="cols" v-bind:max="max" id="cols" class="form-control" placeholder="Columns" type="number" size="10" min="1">
             </div>
         </div>
 

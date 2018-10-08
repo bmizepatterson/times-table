@@ -1,5 +1,3 @@
-let max = 12;
-
 new Vue({
 
     el: "#app",
@@ -7,7 +5,8 @@ new Vue({
     data: {
         rows: '',
         cols: '',
-        highlight: null
+        highlight: null,
+        max: 12
     },
 
     computed: {
@@ -33,10 +32,10 @@ new Vue({
             return arr;
         },
         readyForDisplay: function() {
-            return (this.rows > 0 && this.cols > 0 && !this.outsideBounds);
+            return (this.rows >= 1 && this.cols >= 1 && !this.outsideBounds);
         },
         outsideBounds: function() {
-            return (this.rows > max || this.cols > max);
+            return (this.rows > this.max || this.cols > this.max);
         }
     },
 
